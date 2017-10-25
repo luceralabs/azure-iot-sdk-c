@@ -945,7 +945,7 @@ static bool isSystemProperty(const char* tokenData)
     return result;
 }
 
-static int setMqttMessagPropertyIfPossible(IOTHUB_MESSAGE_HANDLE IoTHubMessage, const char* propName, const char* propValue, int nameLen)
+static int setMqttMessagePropertyIfPossible(IOTHUB_MESSAGE_HANDLE IoTHubMessage, const char* propName, const char* propValue, int nameLen)
 {
     // Not finding a system property to map to isn't an error.
     int result = 0;
@@ -1063,7 +1063,7 @@ static int extractMqttProperties(IOTHUB_MESSAGE_HANDLE IoTHubMessage, const char
                                             strncpy(propValue, iterator + 1, valLen);
                                             propValue[valLen] = '\0';
 
-                                            if (setMqttMessagPropertyIfPossible(IoTHubMessage, propName, propValue, nameLen) != 0)
+                                            if (setMqttMessagePropertyIfPossible(IoTHubMessage, propName, propValue, nameLen) != 0)
                                             {
                                                 LogError("Unable to set message property");
                                                 result = __FAILURE__;
